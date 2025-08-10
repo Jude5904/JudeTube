@@ -1,12 +1,16 @@
-    {
+{
         "name": "judetube-backend",
         "version": "1.0.0",
         "description": "Backend for JudeTube",
         "main": "app.js",
         "scripts": {
-            "start": "node index.js"
+                "start": "node index.js"
         },
         "keywords": [],
         "author": "Jude5902",
-        "license": "GPL-3.0-only"
-    }
+        "license": "GPL-3.0-only",
+        "dependencies": {
+                "express": "^5.1.0",
+                "socket.io": "^4.8.1"
+        }
+}

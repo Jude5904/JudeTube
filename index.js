@@ -1,2 +1,31 @@
-//Just making this to test if i will be able to host this 24/7, lets pray i can
-console.log("test")
+//this code is 10% not chatgpt generatred
+const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
+
+// Serve the HTML file
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
+
+// Handle Socket.IO connections
+io.on('connection', (socket) => {
+    console.log('A user connected');
+
+    socket.on('chat message', (msg) => {
+        console.log('Message:', msg);
+        io.emit('chat message', msg); // send to everyone
+    });
+
+    socket.on('disconnect', () => {
+        console.log('A user disconnected');
+    });
+});
+
+server.listen(3000, () => {
+    console.log('Server running on http://localhost:3000');
+});
